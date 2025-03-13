@@ -20,4 +20,4 @@ A collection of simple tools you can use as a developer to boost your productivi
 
 - `doit`: Run `doit` followed by an input prompt to get a shell command that does the specified action. Eg. `doit list all files` should result in your next terminal input being filled with `ls -a`.
 - `wat`: Run `wat` followed by an input to get a quick LLM explanation of your query. Eg. `wat what is 1+1` should result in `1+1 equals 2` being echoed to your terminal.
-- `celebrate`: Plays a Handel Hallelujah sound effect
+- `celebrate`: Plays a Handel Hallelujah sound effect (if using WSL only works with Windows 11)
