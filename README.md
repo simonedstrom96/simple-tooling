@@ -2,9 +2,13 @@
 
 A collection of simple tools you can use as a developer to boost your productivity
 
+## Prerequisites
+
+- Python so that it is calleable via ```python3``` in the terminal
+- jq: install via ```sudo apt install jq```
+
 ## Installation
 
-- Ensure python is installed on your system and calleable by running `python3` in your terminal.
 - Clone this repo and `cd` into it
 - Run `cp .env.example .env` to copy the .env file
 - Enter your OpenAI API key or other LLM provider variables into the .env file. The LLM provider used depends on what env variables you provide.

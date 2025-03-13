@@ -68,7 +68,7 @@ print(json.dumps(data))
 
     # Check if content is empty
     if [[ -z "$CONTENT" || "$CONTENT" == "null" ]]; then
-        echo "Error: No content received from Azure OpenAI API."
+        echo "Error: OpenAI API error"
         echo "Response:"
         echo "$RESPONSE"
         return 1
