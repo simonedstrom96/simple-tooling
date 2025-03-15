@@ -53,6 +53,7 @@ function push() {
     while true; do
         read -r -p "Above commit message ok? (press enter to accept, write message for feedback): " input
         if [ "$input" = "" ]; then
+            echo
             git commit -m "$CONTENT"
             git push
             return 0
