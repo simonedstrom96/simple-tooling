@@ -7,3 +7,5 @@ source $SCRIPT_DIR/wat.sh
 source $SCRIPT_DIR/doit.sh
 
 source $SCRIPT_DIR/celebrate.sh
+
+source $SCRIPT_DIR/push.sh
