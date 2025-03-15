@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Exports variables from ../.env as local variables
-function dotenv() {
+function _dotenv() {
     # Load environment variables from ../.env file
     # Get the directory where the script is located
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -20,8 +20,8 @@ function dotenv() {
 }
 
 # Calls openai with a system prompt and a human message prompt using curl and python3
-function call_openai() {
-    dotenv
+function _call_openai() {
+    _dotenv
 
     local SYSTEM_PROMPT="$1"
     local PROMPT="$2"
@@ -77,8 +77,8 @@ print(json.dumps(data))
 }
 
 # Calls azure openai with a system prompt and a human message prompt using curl and python3
-function call_azure_openai() {
-    dotenv
+function _call_azure_openai() {
+    _dotenv
 
     local SYSTEM_PROMPT="$1"
     local PROMPT="$2"
@@ -146,13 +146,13 @@ print(json.dumps(data))
 
 # Routes between LLM providers depending on what env variables are set
 function _call_llm() {
-    dotenv
+    _dotenv
     local SYSTEM_PROMPT="$1"
     local PROMPT="$2"
 
     if [[ -n "$AZURE_OPENAI_API_KEY" ]]; then
-        (call_azure_openai "$SYSTEM_PROMPT" "$PROMPT")
+        (_call_azure_openai "$SYSTEM_PROMPT" "$PROMPT")
     else
-        (call_openai "$SYSTEM_PROMPT" "$PROMPT")
+        (_call_openai "$SYSTEM_PROMPT" "$PROMPT")
     fi
 }

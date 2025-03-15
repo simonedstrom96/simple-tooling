@@ -7,7 +7,7 @@ function diff(){
 
     diff_content="$(git diff)"
 
-    new_files_prompt=""
+    new_files_prompt="\n\n New files: ["
     new_files=$(git ls-files --others --exclude-standard)
 
     for file in $new_files; do
@@ -15,8 +15,9 @@ function diff(){
             new_files_prompt+="File: $file\nContent:\n$(cat "$file")\n\n"
         fi
     done
+    new_files_prompt+="]"
 
-    PROMPT="diff: [$diff_content].\n\n New files: [$new_files_prompt]"
+    PROMPT="diff: [$diff_content]$new_files_prompt"
 
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     source $SCRIPT_DIR/_call_llm.sh
