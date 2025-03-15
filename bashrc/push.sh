@@ -60,7 +60,7 @@ function push() {
                 return 0
             else
                 echo # echo out a new line for better readability
-                rejected_commit_prompt="You generated this commit message for me before and I did not like it: $CONTENT."
+                rejected_commit_prompt="You generated this commit message for me before and I did not approve it: $CONTENT."
                 _recursive_push "$input. $rejected_commit_prompt"
                 return $?
             fi
