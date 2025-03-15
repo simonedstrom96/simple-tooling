@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Summarises all unstaged file changes, including new files
 function diff(){
 
     SYSTEM_PROMPT="You exist in the users terminal to help summarise a git diff. The user has entered a git diff (unstaged files) and you are to provide a summary of this diff in order to aid the user in understanding what is going on. Your answer is concise and to the point."
@@ -15,8 +16,8 @@ function diff(){
         fi
     done
 
-    PROMPT="diff:[$diff_content].\n\n New files: [$new_files_prompt]"
-    
+    PROMPT="diff: [$diff_content].\n\n New files: [$new_files_prompt]"
+
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     source $SCRIPT_DIR/_call_llm.sh
 
