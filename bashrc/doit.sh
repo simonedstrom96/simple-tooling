@@ -6,9 +6,9 @@ function doit() {
     PROMPT="$*"
 
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    source $SCRIPT_DIR/call_llm.sh
+    source $SCRIPT_DIR/_call_llm.sh
 
-    CONTENT="$(call_llm "$SYSTEM_PROMPT" "$PROMPT")"
+    CONTENT="$(_call_llm "$SYSTEM_PROMPT" "$PROMPT")"
 
     inject() {
         (python3 -c "import fcntl; import termios; import sys

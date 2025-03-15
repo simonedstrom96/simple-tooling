@@ -145,7 +145,7 @@ print(json.dumps(data))
 }
 
 # Routes between LLM providers depending on what env variables are set
-function call_llm() {
+function _call_llm() {
     dotenv
     local SYSTEM_PROMPT="$1"
     local PROMPT="$2"
