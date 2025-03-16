@@ -44,6 +44,11 @@ function _call_openai() {
     # Define the API endpoint
     API_URL="https://api.openai.com/v1/chat/completions"
 
+    reasoning_effort_input=''
+    if [[ -n "$OPENAI_REASONING_EFFORT" ]]; then
+        reasoning_effort_input="\"reasoning_effort\":\"$OPENAI_REASONING_EFFORT\""
+    fi
+
     # Define the request payload
     DATA=$(python3 -c "
 import json, sys
@@ -52,7 +57,8 @@ data = {
     \"messages\": [
         {\"role\": \"system\", \"content\": sys.argv[1]},
         {\"role\": \"user\", \"content\": sys.argv[2]}
-    ]
+    ],
+    $reasoning_effort_input
 }
 print(json.dumps(data))
 " "$SYSTEM_PROMPT" "$PROMPT")
@@ -108,6 +114,7 @@ function _call_azure_openai() {
     URL="$AZURE_OPENAI_ENDPOINT/openai/deployments/$AZURE_OPENAI_DEPLOYMENT/chat/completions?api-version=$AZURE_API_VERSION"
 
     # Construct the JSON payload using Python to ensure proper JSON formatting
+    # reasoning_effort will set reasoning models such as o3-mini to low, medium or high. Will not impact non-reasoning models.
     DATA=$(python3 -c '
 import json, sys
 data = {
