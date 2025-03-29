@@ -19,3 +19,5 @@ source $SCRIPT_DIR/diff.sh
 # Generic fun stuff
 
 source $SCRIPT_DIR/celebrate.sh
+
+source $SCRIPT_DIR/git/ghbranch.sh
