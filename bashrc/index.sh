@@ -15,9 +15,10 @@ source $SCRIPT_DIR/push.sh
 
 source $SCRIPT_DIR/diff.sh
 
+source $SCRIPT_DIR/git/ghbranch.sh
+source $SCRIPT_DIR/git/main.sh
 
 # Generic fun stuff
 
 source $SCRIPT_DIR/celebrate.sh
 
-source $SCRIPT_DIR/git/ghbranch.sh

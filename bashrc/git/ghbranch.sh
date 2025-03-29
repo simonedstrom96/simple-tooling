@@ -121,7 +121,23 @@ function ghbranch(){
         echo "Error: Failed to push branch '$branch_name' to origin."
         # User might need to resolve push issues manually (e.g., auth, conflicts).
         # The commit is local, branch exists.
+        # User might need to resolve push issues manually (e.g., auth, conflicts).
+        # The commit is local, branch exists.
         return 1
+    fi
+
+    # Check GitHub authentication status before creating PR
+    echo "Checking GitHub authentication status..."
+    if ! gh auth status &> /dev/null; then
+        echo "Error: Not logged into GitHub CLI ('gh')."
+        echo "Please run 'gh auth login' to authenticate."
+        # Don't return error here, as push succeeded. PR creation is skipped.
+        echo "Skipping pull request creation."
+        echo "---------------------------"
+        echo "✅ Branch '$branch_name' created, committed, and pushed."
+        echo "⚠️ Could not create PR - please log in with 'gh auth login' and create it manually."
+        echo "---------------------------"
+        return 0 # Return success as core work done, but indicate PR issue
     fi
 
     echo "Creating draft pull request..."
