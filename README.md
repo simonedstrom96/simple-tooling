@@ -12,7 +12,11 @@ A collection of simple tools you can use as a developer to boost your productivi
 - Clone this repo and `cd` into it
 - Run `cp .env.example .env` to copy the .env file
 - Enter your OpenAI API key or other LLM provider variables into the .env file. The LLM provider used depends on what env variables you provide.
-- Add this line to your ~/.bashrc: `source <SIMPLE_TOOLING_REPO_PATH>/bashrc/index.sh` where `<SIMPLE_TOOLING_REPO_PATH>` is the path to this repository
+- Add one of the following lines to your shell configuration file:
+  - For Bash users (add to ~/.bashrc): `source <SIMPLE_TOOLING_REPO_PATH>/bashrc/index.sh`
+  - For Zsh users (add to ~/.zshrc): `source <SIMPLE_TOOLING_REPO_PATH>/zshrc/index.sh`
+  
+  where `<SIMPLE_TOOLING_REPO_PATH>` is the path to this repository
 
 ## Usage
 
