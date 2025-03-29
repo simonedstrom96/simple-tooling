@@ -7,7 +7,9 @@ function wat() {
     # Start the input with a 1 to include the previous response for quick conversation-like behavior
     if [[ "$1" == "1" ]]; then
         SYSTEM_PROMPT+=" The previous conversation is included the users prompt, please produce the next AI response."
-        PROMPT="Human: $PROMPT. \n\n AI: $CONTENT \n\n Human: ${@:2}". 
+        # Get all arguments starting from the second one
+        shift
+        PROMPT="Human: $PROMPT. \n\n AI: $CONTENT \n\n Human: $*"
     else
         PROMPT="$*"
     fi
@@ -18,5 +20,4 @@ function wat() {
     CONTENT="$(_call_llm "$SYSTEM_PROMPT" "$PROMPT")"
 
     echo "$CONTENT"
-
 }

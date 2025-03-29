@@ -52,7 +52,8 @@ function push() {
         echo "$CONTENT"
 
         while true; do
-            read -r -p "Above commit message ok? (press enter to accept, write message for feedback): " input
+            echo -n "Above commit message ok? (press enter to accept, write message for feedback): "
+            read -r input
             if [ "$input" = "" ]; then
                 echo
                 git commit -m "$CONTENT"

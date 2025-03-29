@@ -12,7 +12,8 @@ function ghbranch(){
     # Check if gh CLI is installed
     if ! command -v gh &> /dev/null; then
         echo "Error: GitHub CLI 'gh' not found. Please install it to create pull requests."
-        read -p "GitHub CLI 'gh' is not installed. Do you want to install it now? (y/n): " confirm
+        echo -n "GitHub CLI 'gh' is not installed. Do you want to install it now? (y/n): "
+        read confirm
         if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
             echo "Installation aborted. Please install GitHub CLI manually to proceed."
             return 1
