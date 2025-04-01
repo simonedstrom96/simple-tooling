@@ -34,4 +34,4 @@ where <SIMPLE_TOOLING_REPO_PATH> is the path to this repository
   - Start the input with ` 1 ` to include the previous response for semi-conversation like behavior. Eg `wat my name is Tim` followed by `wat 1 what is my name` should result in `Your name is Tim.`.
 - `push`: Stages, commits and pushes all changes at current path using an LLM generated commit message, following the conventional commit standard. Will ask for approval and can be given feedback to improve commit message. Warning: does not undo staging of files if you interrupt out of it (eg using ctrl+c).
 - `diff`: Summarises all unstaged file changes, including new files
-- `celebrate`: Plays a Handel Hallelujah sound effect (if using WSL only works with Windows 11)
+- `halleluja`: Plays a Handel Hallelujah sound effect (if using WSL only works with Windows 11)

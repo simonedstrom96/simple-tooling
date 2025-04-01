@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-# Plays a Händel halleluja sound effect
-function celebrate() {
+# Plays a Händel hallelujah sound effect
+function halleluja() {
     local sound_dir="$HOME/sound-effects"
     local sound_file="$sound_dir/Hallelujah-sound-effect.mp3"
     local zip_file="$HOME/Hallelujah-sound-effect.zip"

@@ -1,9 +1,8 @@
 #!/bin/zsh
 
 # Get the directory of this script in zsh
-#SIMPLE_TOOLING_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SIMPLE_TOOLING_SIMPLE_TOOLING_SCRIPT_DIR="$(cd "$(dirname "${(%):-%N}")" && pwd)"
-export SIMPLE_TOOLING_SCRIPT_DIR="$SIMPLE_TOOLING_SIMPLE_TOOLING_SCRIPT_DIR"
+SIMPLE_TOOLING_SCRIPT_DIR="$(cd "$(dirname "${(%):-%N}")" && pwd)"
+export SIMPLE_TOOLING_SCRIPT_DIR="$SIMPLE_TOOLING_SCRIPT_DIR"
 
 # Generic terminal helpers
 
@@ -23,4 +22,4 @@ source $SIMPLE_TOOLING_SCRIPT_DIR/git/main.sh
 
 # Generic fun stuff
 
-source $SIMPLE_TOOLING_SCRIPT_DIR/celebrate.sh
+source $SIMPLE_TOOLING_SCRIPT_DIR/halleluja.sh
