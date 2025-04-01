@@ -5,18 +5,25 @@ A collection of simple tools you can use as a developer to boost your productivi
 ## Prerequisites
 
 - Python so that it is calleable via `python3` in the terminal
-- jq: install via `sudo apt install jq`
+- jq: install via `sudo apt install jq` or `brew install jq` for mac users
 
 ## Installation
 
 - Clone this repo and `cd` into it
 - Run `cp .env.example .env` to copy the .env file
 - Enter your OpenAI API key or other LLM provider variables into the .env file. The LLM provider used depends on what env variables you provide.
-- Add one of the following lines to your shell configuration file:
-  - For Bash users (add to ~/.bashrc): `source <SIMPLE_TOOLING_REPO_PATH>/bashrc/index.sh`
-  - For Zsh users (add to ~/.zshrc): `source <SIMPLE_TOOLING_REPO_PATH>/zshrc/index.sh`
-  
-  where `<SIMPLE_TOOLING_REPO_PATH>` is the path to this repository
+
+#### For Mac OS
+- Run `chmod +x zshrc/setup.sh`
+- Run `./zshrc/setup.sh`
+
+#### For Windows
+Add one of the following lines to your shell configuration file:
+
+For Bash users (add to ~/.bashrc): source <SIMPLE_TOOLING_REPO_PATH>/bashrc/index.sh
+For Zsh users (add to ~/.zshrc): source <SIMPLE_TOOLING_REPO_PATH>/zshrc/index.sh
+where <SIMPLE_TOOLING_REPO_PATH> is the path to this repository
+
 
 ## Usage
 
