@@ -6,7 +6,7 @@ export SIMPLE_TOOLING_SCRIPT_DIR="$SIMPLE_TOOLING_SCRIPT_DIR"
 
 # Generic terminal helpers
 
-source $SIMPLE_TOOLING_SCRIPT_DIR/wat.sh
+source $SIMPLE_TOOLING_SCRIPT_DIR/ask.sh
 
 source $SIMPLE_TOOLING_SCRIPT_DIR/doit.sh
 
