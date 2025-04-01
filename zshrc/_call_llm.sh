@@ -3,11 +3,9 @@
 # Exports variables from ../.env as local variables
 function _dotenv() {
     # Load environment variables from ../.env file
-    # Get the directory where the script is located
-    SCRIPT_DIR="${0:a:h}"
 
     # Construct the full path to the .env file in the parent directory
-    ENV_FILE="$SCRIPT_DIR/../.env"
+    ENV_FILE="$SIMPLE_TOOLING_SCRIPT_DIR/../.env"
 
     # Check if the .env file exists
     if [ ! -f "$ENV_FILE" ]; then
@@ -24,14 +22,14 @@ function _call_openai() {
     _dotenv
 
     local SYSTEM_PROMPT="$1"
-    local PROMPT="$2"
+    local USER_PROMPT="$2"
 
     if [[ -z "$OPENAI_API_KEY" || -z "$OPENAI_MODEL" ]]; then
         echo "Error: OPENAI_API_KEY is not set. Please set your API key."
         return 1
     fi
 
-    if [[ -z "$SYSTEM_PROMPT" || -z "$PROMPT" ]]; then
+    if [[ -z "$SYSTEM_PROMPT" || -z "$USER_PROMPT" ]]; then
         echo "Error: System prompt and user prompt are required."
         return 1
     fi
@@ -61,7 +59,7 @@ data = {
     $reasoning_effort_input
 }
 print(json.dumps(data))
-" "$SYSTEM_PROMPT" "$PROMPT")
+" "$SYSTEM_PROMPT" "$USER_PROMPT")
 
     # Call the API using curl
     RESPONSE=$(curl -s -X POST "$API_URL" \
@@ -87,7 +85,7 @@ function _call_azure_openai() {
     _dotenv
 
     local SYSTEM_PROMPT="$1"
-    local PROMPT="$2"
+    local USER_PROMPT="$2"
 
     local AZURE_OPENAI_ENDPOINT="https://$AZURE_OPENAI_DOMAIN.openai.azure.com"
 
@@ -106,7 +104,7 @@ function _call_azure_openai() {
         return 1
     fi
 
-    if [[ -z "$SYSTEM_PROMPT" || -z "$PROMPT" ]]; then
+    if [[ -z "$SYSTEM_PROMPT" || -z "$USER_PROMPT" ]]; then
         echo "Error: System prompt and user prompt are required."
         return 1
     fi
@@ -124,7 +122,7 @@ data = {
     ]
 }
 print(json.dumps(data))
-' "$SYSTEM_PROMPT" "$PROMPT")
+' "$SYSTEM_PROMPT" "$USER_PROMPT")
 
     # Make the API call
     RESPONSE=$(curl -sS -X POST "$URL" \
@@ -155,11 +153,11 @@ print(json.dumps(data))
 function _call_llm() {
     _dotenv
     local SYSTEM_PROMPT="$1"
-    local PROMPT="$2"
+    local USER_PROMPT="$2"
 
     if [[ -n "$AZURE_OPENAI_API_KEY" ]]; then
-        (_call_azure_openai "$SYSTEM_PROMPT" "$PROMPT")
+        (_call_azure_openai "$SYSTEM_PROMPT" "$USER_PROMPT")
     else
-        (_call_openai "$SYSTEM_PROMPT" "$PROMPT")
+        (_call_openai "$SYSTEM_PROMPT" "$USER_PROMPT")
     fi
 }
