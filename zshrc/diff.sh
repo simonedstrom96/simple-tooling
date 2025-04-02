@@ -17,12 +17,10 @@ function diff(){
     done
     new_files_prompt+="]"
 
-    PROMPT="diff: [$diff_content]$new_files_prompt"
+    USER_PROMPT="diff: [$diff_content]$new_files_prompt"
 
-    SCRIPT_DIR="${0:a:h}"
-    source $SCRIPT_DIR/_call_llm.sh
-
-    CONTENT="$(_call_llm "$SYSTEM_PROMPT" "$PROMPT")"
+    source $SIMPLE_TOOLING_SCRIPT_DIR/_call_llm.sh
+    CONTENT="$(_call_llm "$SYSTEM_PROMPT" "$USER_PROMPT")"
 
     echo "$CONTENT"
     

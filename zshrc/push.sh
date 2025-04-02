@@ -16,12 +16,10 @@ function push() {
 
         SYSTEM_PROMPT="You exist in the users terminal as an assistant to create commit messages based on some file changes. Your output is to be the commit message AND NO OTHER TEXT. DO NOT include \`\`\`backticks\`\`\` or anything else, just the commit message. The commit message is to take the form of <type>:<content> where <type> is based on the conventional commit standard and <content> is the content of the commit message that summarises the changes made. You may choose from ONE of the following conventional commit types for the message: $commit_types. You may NOT use any other commit type. Only use the feat type if actual new functionality has been added, not if things have just be reordered or documentation added. The message content should be short but perfectly summarise all changes made. As an example if the commit only contains that the README.md file was created, your full output should be: 'docs: created README file'. The content given from the user below contains a list of files and their git diffs in the commit and you are to base your response on that. $feedback_prompt"
 
-        SCRIPT_DIR="${0:a:h}"
-        source $SCRIPT_DIR/_call_llm.sh
+        USER_PROMPT="$(git diff --staged --name-only | xargs -I {} sh -c 'echo -e "\nFile: {}\n"; git diff --staged {}')"
 
-        PROMPT="$(git diff --staged --name-only | xargs -I {} sh -c 'echo -e "\nFile: {}\n"; git diff --staged {}')"
-
-        CONTENT="$(_call_llm "$SYSTEM_PROMPT" "$PROMPT")"
+        source $SIMPLE_TOOLING_SCRIPT_DIR/_call_llm.sh
+        CONTENT="$(_call_llm "$SYSTEM_PROMPT" "$USER_PROMPT")"
 
         # Check if content starts with an accepted commit type
         valid_type=false
