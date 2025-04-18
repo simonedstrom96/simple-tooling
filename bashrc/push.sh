@@ -3,6 +3,15 @@
 # Stages all files at current location, comes up with a good commit message based on conventional commits, commits it, pushes
 
 function push() {
+    local skip_confirmation=false
+    # Argument parsing
+    while [[ "$#" -gt 0 ]]; do
+        case $1 in
+            --yes) skip_confirmation=true ;;
+            *) echo "Unknown parameter passed: $1"; return 1 ;;
+        esac
+        shift
+    done
 
     # Generates a commit message (optionally based on feedback)
     function _generate_commit_message(){
@@ -47,6 +56,7 @@ function push() {
 
     # Recursively generates a commit message based on diffs and feedback
     function _recursive_push() {
+        local CONTENT
         CONTENT="$(_generate_commit_message "$*")"
 
         echo "$CONTENT"
@@ -72,7 +82,14 @@ function push() {
 
     git add .
 
-    _recursive_push
+    if [ "$skip_confirmation" = true ]; then
+        CONTENT="$(_generate_commit_message)" # Generate message without feedback loop
+        echo "Commit message (auto-accepted): $CONTENT"
+        git commit -m "$CONTENT"
+        git push
+    else
+        _recursive_push # Original interactive flow
+    fi
 
     eval "$ORIGINAL_SET"
 }
